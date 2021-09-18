@@ -1,8 +1,5 @@
 package algorithm.weekchallenge.level1;
 
-import java.util.HashMap;
-import java.util.Map;
-
 // 위클리 챌린지
 // 4주차_직업군 추천하기
 public class week_4 {
@@ -26,7 +23,6 @@ public class week_4 {
     public String solution(String[] table, String[] languages, int[] preference) {
         String answer = "";
 
-        Map<String, Integer> map = new HashMap<>();
         int max = 0;
 
         for (int i = 0; i < table.length; i++) {
@@ -48,7 +44,6 @@ public class week_4 {
                 answer = s[0];
             }
 
-            map.put(s[0], total);
         }
 
         return answer;
