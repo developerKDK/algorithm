@@ -1,5 +1,8 @@
 package algorithm.weekchallenge.level1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // 위클리 챌린지
 // 4주차_직업군 추천하기
 public class week_4 {
@@ -16,28 +19,36 @@ public class week_4 {
         int[] preference2 = {7, 5};
 
         week_4 a = new week_4();
-        System.out.println(a.solution(table1, languages1, preference1));
+        System.out.println(a.solution(table2, languages2, preference2));
 
     }
 
     public String solution(String[] table, String[] languages, int[] preference) {
         String answer = "";
 
+        Map<String, Integer> map = new HashMap<>();
+        int max = 0;
+
         for (int i = 0; i < table.length; i++) {
             String[] s = table[i].split(" ");
-            for (int k = 0; k < languages.length; k++) {
-                int value = 0;
-                for (int j = 1; j < s.length; j++) {
-//                System.out.println(s[j]);
+            int total = 0;
+            for (int j = 1; j < s.length; j++) {
+                for (int k = 0; k < languages.length; k++) {
                     if (s[j].equals(languages[k])) {
-//                        System.out.println(s[j]);
-//                        System.out.println(languages[k]);
-//                        System.out.println(j);
-                        value = 6 - j;
+                        total += (6 - j) * preference[k];
                     }
-                    System.out.println(value);
                 }
             }
+            if (max < total) {
+                max = total;
+                answer = s[0];
+            }
+
+            if (max == total && answer.compareTo(s[0]) > 0) {
+                answer = s[0];
+            }
+
+            map.put(s[0], total);
         }
 
         return answer;
